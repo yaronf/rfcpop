@@ -1,4 +1,4 @@
-# Django settings for proj2 project. 
+# Django settings for "project" project. 
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -101,7 +101,7 @@ MIDDLEWARE_CLASSES = (
     'rfcpop.ExceptionMiddleware.generic_handler',
 )
 
-ROOT_URLCONF = 'proj2.urls'
+ROOT_URLCONF = 'project.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -148,7 +148,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        'proj2.rfcpop.views': {
+        'project.rfcpop.views': {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,

@@ -8,3 +8,7 @@
 # Foreign libraries
 djason/
 django_openid_auth/
+# Foreign content
+html-rfcs/
+# Databse
+mydb

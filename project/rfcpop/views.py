@@ -18,14 +18,17 @@ HTTP_CREATED = 201
 logger = logging.getLogger(__name__)
 
 def home(request):
+    '''Home page'''
     return render_to_response('rfcpop-home.html', {},
                               context_instance=RequestContext(request))
 
 def release_notes(request):
+    '''Release notes'''
     return render_to_response('release-notes.html', {},
                               context_instance=RequestContext(request))
 
 def about(request):
+    '''"About" page'''
     return render_to_response('about.html', {},
                               context_instance=RequestContext(request))
 
@@ -33,6 +36,9 @@ def rfc(request, rfc_num):
     '''Scrape the RFC from the IETF tools site, add a "hook" and send it as a response.
     We should have used streaming to do it, but (1) I don't know how to and (2) Django only supports StreamingHttpResponse as of 1.5.'''
 
+    # Sanitize the input
+    if (not re.match(r'[1-9]\d{0,3}', str(rfc_num))):
+        raise Http404()
     url = 'http://tools.ietf.org/html/rfc' + str(rfc_num)
     r = requests.get(url)
     if r.status_code != requests.codes.ok:  # for whatever reason
@@ -54,6 +60,7 @@ def get_doc_id(doctype, url):
 
 
 def add_hook(content, request, source_url):
+    '''Add a basic "hook" JavaScript code at the top of the rendered RFC'''
     hook_done = False
     in_head = True
     doctype = 1  # rfc
@@ -79,6 +86,7 @@ def add_hook(content, request, source_url):
 
 
 def head_hook(doc_id, author):
+    '''Stuff we add to the "head" section of the rendered HTML'''
     author_id = author.id if author else None
     details = {'doc_id': doc_id, 'is_authenticated': (author != None)}
     if author:
@@ -98,6 +106,7 @@ window.rfcpop = '''
 
 
 def page_hook():
+    '''Static code (JavaScript includes) added to the top of the HTML page'''
     return '''
 <script type='text/javascript' src='/static/js/lib/jquery.js'></script>
 <script type='text/javascript' src='/static/js/lib/jquery.cookie.js'></script>
@@ -118,10 +127,12 @@ def page_hook():
 
 
 def is_hook_line(line):
+    '''Match a line where the page hook should be added'''
     return bool(re.match('^<body ', line))
 
 
 def is_head_closing(line):
+    '''End of the HTML "head" section'''
     return bool(re.match(r'^</head', line))
 
 
@@ -132,6 +143,7 @@ def should_swallow(line):
 
 
 def annot(request, annot_id):
+    '''View for a single annotation: GET, PUT, DELETE'''
     try:
         o = Annot.objects.get(id=annot_id)
     except Annot.DoesNotExist:
@@ -158,6 +170,7 @@ def annot(request, annot_id):
             return HttpResponse()
 
 def get_author(request):
+    '''Get the current Author object for the logged in user, or None'''
     if not request.user.is_authenticated():
         current_author = None
     else:
@@ -165,9 +178,12 @@ def get_author(request):
     return current_author
 
 def annots(request):
+    '''A view for multiple annotations: POST a new annotation, or
+    retrieve a filtered list of annotations'''
     if request.method == 'POST':
         return post_new_annot(request)
     elif request.method == 'GET' and 'doc_id' in request.GET:
+        # Currently the only supported filter is doc_id
         current_author = get_author(request)
         rs = Annot.objects.filter(document=request.GET['doc_id'])
         if rs == None:
@@ -178,6 +194,7 @@ def annots(request):
         raise Http404
 
 def post_new_annot(request):
+    '''Save a new annotation to the database, return its ID'''
     try:
         if not request.user.is_authenticated():
             # Normally this is prevented by the GUI
@@ -198,12 +215,14 @@ def post_new_annot(request):
     return response
 
 def show(request):
+    '''Display an RFC, with its number given in a get-parameter'''
     if 'rfc_num' in request.GET:
         return redirect('/rfcpop/rfc/' + request.GET['rfc_num'])
     else:
         raise Http404
 
 def logout(request):
+    '''Logout the user, redirect to the home page'''
     auth.logout(request)
     # Redirect to a success page.
     return redirect("/rfcpop/")

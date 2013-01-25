@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from proj2 import rfcpop
+from project import rfcpop
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     url(r'^rfcpop/', include('rfcpop.urls')),
 
     # Empty URL
-    url(r'^$', 'proj2.rfcpop.views.home', name='home'),
+    url(r'^$', 'project.rfcpop.views.home', name='home'),
 
     url(r'^openid/', include('django_openid_auth.urls')),
 )
