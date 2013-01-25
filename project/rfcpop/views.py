@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib import auth
-import requests
+# import requests
 import re
 import json
 import djason.json
@@ -40,10 +40,14 @@ def rfc(request, rfc_num):
     if (not re.match(r'[1-9]\d{0,3}', str(rfc_num))):
         raise Http404()
     url = 'http://tools.ietf.org/html/rfc' + str(rfc_num)
-    r = requests.get(url)
-    if r.status_code != requests.codes.ok:  # for whatever reason
-        raise Http404()
-    response_lines = add_hook(r.iter_lines(), request, url)
+    # r = requests.get(url)
+    # if r.status_code != requests.codes.ok:  # for whatever reason
+    #     raise Http404()
+    # response_lines = add_hook(r.iter_lines(), request, url)
+    filename = 'rfcpop/static/html-rfcs/rfc' + str(rfc_num) + '.html'
+    logger.error('filename: '+filename)
+    infile = open(filename)
+    response_lines = add_hook(infile, request, url)
     response = HttpResponse(response_lines)
     # Allow the browser to cache these responses
     # This is simpler than serevr-side caching, but less useful

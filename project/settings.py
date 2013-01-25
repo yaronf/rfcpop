@@ -148,7 +148,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        'project.rfcpop.views': {
+        'rfcpop.views': {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
