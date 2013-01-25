@@ -1,0 +1,10 @@
+# Compiled Python
+*.pyc
+# Packages
+*.tar.gz
+*.deb
+# Subversion remnants
+.svn/
+# Foreign libraries
+djason/
+django_openid_auth/

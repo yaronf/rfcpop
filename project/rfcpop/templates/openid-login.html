@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>RFC Populi</title>
+<link rel="stylesheet" href="{{STATIC_URL}}js/lib/openid-ps/openid-ps.css" />
+<link rel="shortcut icon" href="{{STATIC_URL}}media/primo-partial/comment_add.png" />
+</head>
+<body>
+	<script type='text/javascript' src='{{STATIC_URL}}js/lib/jquery.js'></script>
+	<script type='text/javascript' src='{{STATIC_URL}}js/lib/jwysiwyg/jquery.wysiwyg.js'></script>
+
+	<script type='text/javascript'
+		src='{{STATIC_URL}}js/lib/openid-ps/openid-ps-jquery-plugin.js'></script>
+
+	<div id='openid'>
+		<!-- OpenID Provider Selector -->
+		<form method="post" class="openid-ps" action="">
+			{% csrf_token %}
+			<input type="hidden" id="openid_action" name="openid_action"
+				value="login" />
+			<!-- OpenID req. -->
+
+			<fieldset id='openid-fs'>
+				<legend id="openid-legend" title="Click here to login">Sign-in or Create New Account</legend>
+
+				<div class="selector">
+					<p>
+						Click your <a href="http://openid.net/what/" target="new">OpenID</a>
+						account provider:
+					</p>
+					<div class="providers">
+						<div class="large"></div>
+						<div class="small"></div>
+					</div>
+					<div class="username" style="display: none">
+						<p></p>
+						<table>
+							<tbody>
+								<tr>
+									<td><input type="text" value="" /></td>
+									<td><input id="submit1" type="submit" value="Sign-in" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="manual">
+					<p>Or, manually enter your OpenID URL:</p>
+					<table>
+						<tbody>
+							<tr>
+								<td><input id="openid_identifier" name="openid_identifier"
+									type="text" value="http://" />
+								<!-- OpenID req. --></td>
+								<td><input id="submit2" type="submit" value="Sign-in" /></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="register">
+					Or, if you don't have an OpenID through any of the above, <b><a
+						href="https://www.myopenid.com/signup?affiliate_id=">click
+							here to sign up</a>
+					</b>!
+				</div>
+
+				<noscript>
+					<p>
+						OpenID is service that allows you to log-on to many different
+						Web sites using a single identity. Find out <a
+							href="http://openid.net/what/">more about OpenID</a> and <a
+							href="http://openid.net/get/">how to get an OpenID enabled
+							account</a>.
+					</p>
+				</noscript>
+			</fieldset>
+		</form>
+		<!-- /OpenID Provider Selector -->
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(docReady);
+
+		function docReady() {
+			// Create jQuery plugin
+			openIdPs = $("form.openid-ps").openIdProviderSelector();
+			openIdPs.initialize();
+
+			$(".selector").hide();
+			$(".manual").hide();
+			$(".register").hide();
+			$('#openid-legend').click(function() {
+			    $(this).siblings().toggle();
+			    return false;
+			}).hover(function() {$(this).css("background-color","lightgrey");},
+					 function() {$(this).css("background-color","");});
+		}
+
+	</script>
+</body>
+</html>

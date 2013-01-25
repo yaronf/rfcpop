@@ -1,0 +1,222 @@
+/* Classes */
+.openid-ps
+{
+	width:600px;
+	font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+	/*font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;*/
+	font-size:100%;
+	margin:0px;
+	padding:0px;
+	
+}
+.openid-ps legend
+{
+	font-weight:bold;
+	margin:0px;
+	padding:10px;
+}
+.openid-ps p, 
+.openid-ps table, 
+.openid-ps td 
+{
+	margin:0px;
+	padding:0px;
+	border:none 0px;
+	width:auto;
+	height:auto;
+}
+.openid-ps table
+{
+	border-spacing:0px 0px;
+	-moz-box-sizing:border-box;
+	border-collapse:separate;
+	display:table;
+}
+.openid-ps input, 
+.openid-ps select, 
+.openid-ps button 
+{
+	border:1px solid #999999;
+	font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+	font-size:100%;
+}
+.openid-ps p 
+{
+	padding-bottom:5px;
+	position:relative;
+}
+.openid-ps input 
+{
+	margin:0px;
+	padding:3px;
+}
+.openid-ps input[type=submit]
+{
+	margin-left:10px;
+}
+.openid-ps .providers .large
+{
+	height:68px;
+}
+.openid-ps .providers .small
+{
+	height:35px;
+	margin-top:10px;
+}
+.openid-ps .providers .large a 
+{
+	width:100px;
+	height:60px;
+	border:1px solid #DDD;
+	margin:3px;
+	float:left;
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-color:#fff;
+	
+}
+.openid-ps .providers .small a 
+{
+	width:24px;
+	height:24px;
+	border:1px solid #DDD;
+	margin:3px;
+	float:left;
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-color:#fff;
+}
+.openid-ps .providers .large a:focus,
+.openid-ps .providers .small a:focus
+{
+	outline:none;
+	-moz-outline-style:none;
+}
+.openid-ps .providers .large a:hover,
+.openid-ps .providers .small a:hover
+{
+	outline:none;
+	-moz-outline-style:none;
+	border:1px solid #FFFCC9;
+}
+.openid-ps .providers .large a.selected
+{
+	outline:none;
+	-moz-outline-style:none;
+	border:5px solid #31699E;
+}
+.openid-ps .providers .small a.selected
+{
+	outline:none;
+	-moz-outline-style:none;
+	border:3px solid #31699E;
+}
+.openid-ps .providers .large a.google
+{
+	background-image:url('images/google.png');
+}
+.openid-ps .providers .large a.yahoo
+{
+	background-image:url('images/yahoo.png');
+}
+.openid-ps .providers .large a.aol
+{
+	background-image:url('images/aol.png');
+}
+.openid-ps .providers .large a.myopenid
+{
+	background-image:url('images/myopenid.png');
+}
+.openid-ps .providers .large a.openid
+{
+	background-image:url('images/openid.png');
+}
+.openid-ps .providers .small a.livejournal
+{
+	background-image:url('images/livejournal.png');
+}
+.openid-ps .providers .small a.wordpress
+{
+	background-image:url('images/wordpress.png');
+}
+.openid-ps .providers .small a.blogger
+{
+	background-image:url('images/blogger.png');
+}
+.openid-ps .providers .small a.verisign
+{
+	background-image:url('images/verisign.png');
+}
+.openid-ps .providers .small a.claimid
+{
+	background-image:url('images/claimid.png');
+}
+.openid-ps .providers .small a.clickpass
+{
+	background-image:url('images/clickpass.png');
+}
+/* IDs */
+.openid-ps .selector,
+.openid-ps .manual
+{
+	position:relative;
+	clear:both;
+	float:left;
+	margin:0px;
+	margin-bottom:30px;
+	width:100%;
+}
+.openid-ps .register
+{
+	position:relative;
+	clear:both;
+	float:left;
+}
+.openid-ps .selector .username
+{
+	margin:0px;
+	margin-top:10px;
+}
+.openid-ps .selector .username > table
+{
+	font-size:100%;
+	border:0px;
+	margin:0px;
+	padding:0px;
+}
+.openid-ps .selector .username input[type=text]
+{
+	width:200px;
+	border:2px solid #31699E;
+}
+.openid-ps .selector .username input[type=submit]
+{
+	width:70px;
+}
+.openid-ps .manual > table
+{
+	font-size:140%;
+	border:0px;
+	margin:0px;
+	padding:0px;
+}
+.openid-ps .manual input[type=text]
+{
+	width:400px;
+	height:28px;
+	line-height:22px;
+	padding-left:32px;
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:transparent url(images/openid-large.png) no-repeat scroll left center;
+}
+.openid-ps .manual input[type=text].focused
+{
+	border:2px solid #31699E;
+}
+.openid-ps .manual input[type=submit]
+{
+	height:36px;
+	width:100px;
+}

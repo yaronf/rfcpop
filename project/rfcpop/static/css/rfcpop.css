@@ -1,0 +1,75 @@
+.annot-top-banner {
+	position: relative;
+	max-width: 576px;
+}
+.annot-full-name {
+	font-weight: bold;
+}
+.annot-logout {
+	position: absolute;
+	right:    0;
+	bottom:   0;
+}
+.annot-block, .annot-top-banner {
+	color: blue;
+	background-color: lavender;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-weight: normal;
+	white-space: normal;
+	text-align: justify;
+	line-height: 20px; /* to overide the "tools" CSS */
+}
+.rfcpop-static {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        font-weight: normal;
+        white-space: normal;
+        text-align: justify;
+}
+.rfcpop-static .license {
+	font-size: small;
+	color: gray;
+}
+.annot-block {
+	position:relative;
+	max-width: 500px;
+	padding: 4px;
+	margin-top: 20px;
+	border-style: none;
+}
+.annot-delete-button {
+	background-image: url(/static/media/primo-partial/comment_delete.png);
+}
+.annot-action-buttons {
+	position: absolute;
+	right:    0;
+	bottom:   0;
+}
+input[type=button] {
+	border-style:none;
+	padding: 2px;
+	cursor: pointer;
+}
+.annot-anchor {
+	background-color: gainsboro;
+}
+.annot-add-icon {
+	cursor: pointer;
+}
+.release-notes h2:hover {
+	color:cyan;
+	cursor: pointer
+}
+.release-notes h3 {
+    	color:darkgrey;
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+.rfcpop-title {
+	display:block;
+	margin-top: 20px;
+	margin-left: 35px;
+}
+.rfcpop-subtitle {
+	display:block;
+	margin-top: -12px;
+}
