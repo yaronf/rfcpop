@@ -19,4 +19,4 @@ python manage.py runserver --insecure 10.172.29.148:8000
 
 To sync a local copy of RFCs:
 
-rsync -avz rsync.tools.ietf.org::tools.html.rfc ./html
+rsync -avz rsync.tools.ietf.org::tools.html.rfc rfcpop/static/html-rfcs/
