@@ -6,7 +6,8 @@
 $(document).ready(setupDocument);
 
 function setupDocument() {
-	$("span.h1").addClass("annot-anchor");
+	// H1 is the document title, but it doesn't have a useful name, so we'll skip it for now
+	// $("span.h1").addClass("annot-anchor");
 	$("span.h2").addClass("annot-anchor");
 	$("span.h3").addClass("annot-anchor");
 	$("span.h4").addClass("annot-anchor");
