@@ -12,7 +12,6 @@
 }
 .annot-block, .annot-top-banner {
 	color: blue;
-	background-color: lavender;
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	font-weight: normal;
 	white-space: normal;
@@ -30,6 +29,7 @@
 	color: gray;
 }
 .annot-block {
+	background-color: lavender;
 	position:relative;
 	max-width: 500px;
 	padding: 4px;
@@ -40,9 +40,8 @@
 	background-image: url(/static/media/primo-partial/comment_delete.png);
 }
 .annot-action-buttons {
-	position: absolute;
-	right:    0;
-	bottom:   0;
+	width: 100%;
+	text-align: right;
 }
 input[type=button] {
 	border-style:none;
