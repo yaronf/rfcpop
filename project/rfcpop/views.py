@@ -81,7 +81,7 @@ def add_hook(content, request, source_url):
             output += page_hook()
             hook_done = True
         else:
-            output += line + '\n'
+            output += line
 
     # assert hook_done
 
