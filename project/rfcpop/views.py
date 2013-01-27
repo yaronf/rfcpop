@@ -45,7 +45,6 @@ def rfc(request, rfc_num):
     #     raise Http404()
     # response_lines = add_hook(r.iter_lines(), request, url)
     filename = 'rfcpop/static/html-rfcs/rfc' + str(rfc_num) + '.html'
-    logger.error('filename: '+filename)
     infile = open(filename)
     response_lines = add_hook(infile, request, url)
     response = HttpResponse(response_lines)
