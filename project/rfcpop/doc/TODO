@@ -8,10 +8,9 @@
 - Permalinks
 - Navigation between comments on same page
 - Use templates and/or Django 1.5 streaming for the document, instead of hand-crafted hooks.
-- And/or use caching for documents
 - Generalize the process, e.g. for W3C docs.
 - An installable Django app
-- GUI improvements: a floating header, animations,...
+- GUI improvements: animations, icons...
 - Wrap the OpenID page in a JQuery UI dialog
 - Database model evolution with South.
 - Block the use of OpenID to known providers only
