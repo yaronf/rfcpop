@@ -2,6 +2,10 @@
 	position: relative;
 	max-width: 576px;
 }
+.annot-home-button {
+	height: 20px;
+	margin-right: 4px;
+}
 .annot-full-name {
 	font-weight: bold;
 }
@@ -12,6 +16,7 @@
 }
 .annot-block, .annot-top-banner {
 	color: blue;
+	background-color: lavender;
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	font-weight: normal;
 	white-space: normal;
@@ -29,7 +34,6 @@
 	color: gray;
 }
 .annot-block {
-	background-color: lavender;
 	position:relative;
 	max-width: 500px;
 	padding: 4px;

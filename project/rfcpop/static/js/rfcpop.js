@@ -127,7 +127,7 @@ function createClicked(event) {
 			"<textarea class='annot-edit' cols='60' rows='5'/>" +
 			"<input class='annot-save-button' type='button' value='Save'/>" +
 			"<input class='annot-cancel-button' type='button' value='Cancel'/>" +
-			"</div");
+			"</div>");
 	parent.append(edit_block);
 	var area = parent.find(".annot-edit");
 	area.wysiwyg({
@@ -194,13 +194,17 @@ function addDocHeader() {
 		var full_name = window.rfcpop.full_name
 		var email = window.rfcpop.email
 		$("body").prepend(
-		"<div class='annot-top-banner'>Welcome " +
+		"<div class='annot-top-banner'>" +
+		"<a href='/rfcpop/'> <img class='annot-home-button' src='/static/media/primo-partial/home.png' /></a>" +
+		"Welcome " +
 		"<span class='annot-full-name'>" + full_name + '</span>' +
 		" [<span class='annot-email'>" + email + '</span>]' +
 		"<div class='annot-logout'><a href='/rfcpop/logout/'>Logout</a></div></div>");
 	} else {
 		$("body").prepend(
-		"<div class='annot-top-banner'>Welcome Guest! Please <a href='/rfcpop/login/'>login or register</a> to create your own comments.</div>");
+		"<div class='annot-top-banner'>" +
+		"<a href='/rfcpop/'> <img class='annot-home-button' src='/static/media/primo-partial/home.png' /></a>" +
+		"Welcome Guest! Please <a href='/rfcpop/login/'>login or register</a> to create your own comments.</div>");
 	}
 }
 
@@ -286,6 +290,7 @@ function urlSanitizer(in_url) {
 		case 'www.ietf.org':
 		case 'tools.ietf.org':
 		case 'datatracker.ietf.org':
+		case 'rfcpop.d.porticor.net':
 			return in_url;
 		default:
 			return null;
