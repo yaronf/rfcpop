@@ -113,6 +113,7 @@ def page_hook():
     return '''
 <script type='text/javascript' src='/static/js/lib/jquery.js'></script>
 <script type='text/javascript' src='/static/js/lib/jquery.cookie.js'></script>
+<script type='text/javascript' src='/static/js/lib/jquery.sticky.js'></script>
 <script type='text/javascript' src='/static/js/lib/html-sanitizer-minified.js'></script>
 <script type='text/javascript' src='/static/js/lib/purl.js'></script>
 <link rel='stylesheet' href='/static/js/lib/jwysiwyg/jquery.wysiwyg.css' type='text/css'/>

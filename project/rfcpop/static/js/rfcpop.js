@@ -206,6 +206,7 @@ function addDocHeader() {
 		"<a href='/rfcpop/'> <img class='annot-home-button' src='/static/media/primo-partial/home.png' /></a>" +
 		"Welcome Guest! Please <a href='/rfcpop/login/'>login or register</a> to create your own comments.</div>");
 	}
+	$('.annot-top-banner').sticky();
 }
 
 function getAnnotations() {
