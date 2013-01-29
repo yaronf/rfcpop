@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django_openid_auth',
     'rfcpop',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
