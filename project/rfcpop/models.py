@@ -12,9 +12,10 @@ class Document(models.Model):
 class AnnotAuthor(models.Model):
     user = models.ForeignKey(auth.models.User,
                              on_delete = models.CASCADE)
+    nickname = models.CharField(max_length = 32)
 
     def __unicode__(self):
-	    return unicode(self.user)
+	    return unicode(self.user) + ' (' + self.nickname + ')'
 
 class Annot(models.Model):
     text = models.TextField(max_length=65536)

@@ -178,7 +178,8 @@ def get_author(request):
     if not request.user.is_authenticated():
         current_author = None
     else:
-        current_author, created = AnnotAuthor.objects.get_or_create(user = request.user)
+        user = request.user
+        current_author, created = AnnotAuthor.objects.get_or_create(user = user, defaults={'nickname': user.username})
     return current_author
 
 def annots(request):
