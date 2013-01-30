@@ -171,7 +171,7 @@ function saveClicked(event) {
 			renderAnnot(docAnchor, annotText, null, annot_url);
 		},
 		error : function(data, textStatus, errorThrown) {
-			alert("Could not save annotation [" + textStatus + '] '
+			custom_alert("Could not save annotation [" + textStatus + '] '
 					+ errorThrown);
 		}
 	});
@@ -211,7 +211,7 @@ function getAnnotations() {
 	var doc_id = window.rfcpop.doc_id;
 	var listUrl = '/rfcpop/annot/?doc_id=' + doc_id;
 	$.getJSON(listUrl, null, handleAnnotationList)
-	.error(function(data, textStatus, errorThrown) { alert("Could not list annotation [" + textStatus + '] '
+	.error(function(data, textStatus, errorThrown) { custom_alert("Could not list annotation [" + textStatus + '] '
 			+ errorThrown); });
 }
 
@@ -289,7 +289,7 @@ function deleteAnnot(annot_url, annot_block) {
 				annot_block.remove();
 		},
 		error : function(data, textStatus, errorThrown) {
-			alert("Could not delete annotation [" + textStatus + '] '
+			custom_alert("Could not delete annotation [" + textStatus + '] '
 					+ errorThrown);
 		}
 	});
@@ -369,7 +369,7 @@ function editSaveButtonClicked(event) {
 			renderAnnot(docAnchor, annotText, null, editUrl);
 		},
 		error : function(data, textStatus, errorThrown) {
-			alert("Could not save annotation [" + textStatus + '] '
+			custom_alert("Could not save annotation [" + textStatus + '] '
 					+ errorThrown);
 		}
 	});
