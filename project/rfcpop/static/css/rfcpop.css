@@ -23,6 +23,11 @@
 	text-align: justify;
 	line-height: 20px; /* to overide the "tools" CSS */
 }
+.annot-header {
+	color: grey;
+	text-align: right;
+	font-size: 80%;
+}
 .rfcpop-static {
         font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
         font-weight: normal;

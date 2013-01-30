@@ -168,7 +168,7 @@ function saveClicked(event) {
 		success: function(data, testStatus, xhr) {
 			var annot_url = xhr.getResponseHeader('Location');
 			edit_block.remove();
-			renderAnnot(docAnchor, annotText, window.rfcpop.author_id, annot_url);
+			renderAnnot(docAnchor, annotText, null, annot_url);
 		},
 		error : function(data, textStatus, errorThrown) {
 			alert("Could not save annotation [" + textStatus + '] '
@@ -191,14 +191,12 @@ $(document).ready(getAnnotations);
 
 function addDocHeader() {
 	if (window.rfcpop.is_authenticated) {
-		var full_name = window.rfcpop.full_name
-		var email = window.rfcpop.email
+		var nickname = window.rfcpop.author_nickname
 		$("body").prepend(
 		"<div class='annot-top-banner'>" +
 		"<a href='/rfcpop/'> <img class='annot-home-button' src='/static/media/primo-partial/home.png' /></a>" +
 		"Welcome " +
-		"<span class='annot-full-name'>" + full_name + '</span>' +
-		" [<span class='annot-email'>" + email + '</span>]' +
+		"<span class='annot-full-name'>" + nickname + '</span>' +
 		"<div class='annot-logout'><a href='/rfcpop/logout/'>Logout</a></div></div>");
 	} else {
 		$("body").prepend(
@@ -224,25 +222,42 @@ function handleAnnotationList(data) {
 	});
 }
 
-function renderAnnot(bookmark, text, author_id, annot_url) {
-	var anchor = document.getElementById(bookmark);
-	var sanitized_text = html_sanitize(text, urlSanitizer, null);
-	// TODO: add icons
-	var newDivText =
-		"<div class='annot-block'>"+
-		"  <div class='annot-text'>"+sanitized_text+"</div>"+
+function staticAnnotText() {
+	return "<div class='annot-block'>"+
+		"  <div class='annot-header'>"+
+		"    <span class='annot-author'></span>"+
+		"    <span class='annot-created'></span>"+
+		"  </div>"+
+		"  <div class='annot-text'></div>"+
 		"  <div class='annot-action-buttons'>"+
 		"    <input type='button' class='annot-edit-button' value='Edit'/>"+
 		"    <input type='button' class='annot-delete-button' value='Delete'/>"+
 		"  </div>"+
 		"</div>";
-	var newDiv = $(newDivText);
-	$(anchor).append(newDiv);
+}
+
+function renderAnnot(bookmark, text, author, annot_url) {
 	var is_authenticated = window.rfcpop.is_authenticated
 	var my_author_id = window.rfcpop.author_id
+	var my_nickname = window.rfcpop.author_nickname
+	var anchor = document.getElementById(bookmark);
+	var sanitized_text = html_sanitize(text, urlSanitizer, null);
+	var not_my_comment = (!is_authenticated || (author && my_author_id != author.pk));
+	var author_display_name;
+	if (not_my_comment) {
+		author_display_name = author.nickname;
+	} else {
+		author_display_name = my_nickname;
+	}
+	// TODO: add icons
+	var newDiv = $(staticAnnotText());
+	newDiv.find('.annot-text').html(text);
+	newDiv.find('.annot-author').html(author_display_name);
+	$(anchor).append(newDiv);
 	var edit_button = newDiv.find('.annot-edit-button');
 	var delete_button = newDiv.find('.annot-delete-button');
-	if (!is_authenticated || my_author_id != author_id) {
+	
+	if (not_my_comment) {
 		edit_button.hide();
 		delete_button.hide();
 	} else {
@@ -351,7 +366,7 @@ function editSaveButtonClicked(event) {
             	},
 		success: function(data, testStatus, xhr) {
 			edit_block.remove();
-			renderAnnot(docAnchor, annotText, window.rfcpop.author_id, editUrl);
+			renderAnnot(docAnchor, annotText, null, editUrl);
 		},
 		error : function(data, textStatus, errorThrown) {
 			alert("Could not save annotation [" + textStatus + '] '

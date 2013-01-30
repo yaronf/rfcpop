@@ -91,11 +91,11 @@ def add_hook(content, request, source_url):
 def head_hook(doc_id, author):
     '''Stuff we add to the "head" section of the rendered HTML'''
     author_id = author.id if author else None
+    author_nickname = author.nickname if author else None
     details = {'doc_id': doc_id, 'is_authenticated': (author != None)}
     if author:
         details['author_id'] = author_id
-        details['full_name'] = author.user.get_full_name()
-        details['email'] = author.user.email
+        details['author_nickname'] = author_nickname
     # logger.debug('details: ' + json.dumps(details))
     init_script = '''
 <script type='text/javascript'>
@@ -194,7 +194,7 @@ def annots(request):
         if rs == None:
             return json.dumps({})
         s = djason.json.Serializer()
-        return HttpResponse(s.serialize(rs))
+        return HttpResponse(s.serialize(rs, relations=['author']))
     else:
         raise Http404
 

@@ -12,5 +12,4 @@
 - An installable Django app
 - GUI improvements: animations, icons...
 - Wrap the OpenID page in a JQuery UI dialog
-- Database model evolution with South.
 - Block the use of OpenID to known providers only
