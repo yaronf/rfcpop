@@ -112,6 +112,8 @@ def page_hook():
     '''Static code (JavaScript includes) added to the top of the HTML page'''
     return '''
 <script type='text/javascript' src='/static/js/lib/jquery.js'></script>
+<script type='text/javascript' src='/static/js/lib/jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js'></script>
+<link rel='stylesheet' href='/static/js/lib/jquery-ui-1.10.0.custom/css/redmond/jquery-ui-1.10.0.custom.min.css'/>
 <script type='text/javascript' src='/static/js/lib/jquery.cookie.js'></script>
 <script type='text/javascript' src='/static/js/lib/jquery.sticky.js'></script>
 <script type='text/javascript' src='/static/js/lib/html-sanitizer-minified.js'></script>

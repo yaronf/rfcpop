@@ -117,7 +117,7 @@ function wysiwygControls() {
 
 function createClicked(event) {
 	if (!window.rfcpop.is_authenticated) {
-		alert('Please login or register to create a comment');
+		custom_alert('Please login or register to create a comment');
 		return;
 	}
 	var target = $(event.target);
@@ -387,4 +387,24 @@ function editCancelButtonClicked(event) {
 	edit_block.remove();
 	var annot_url = button.attr('target');
 	renderAnnot(docAnchor, annotText, window.rfcpop.author_id, annot_url);
+}
+
+function custom_alert(output_msg, title_msg) {
+    if (!title_msg)
+        title_msg = 'Alert';
+
+    if (!output_msg)
+        output_msg = 'No Message to Display.';
+
+    $("<div></div>").html(output_msg).dialog({
+        title: title_msg,
+        resizable: false,
+        modal: true,
+        buttons: {
+            "OK": function() 
+            {
+                $(this).dialog("close");
+            }
+        }
+	});
 }
