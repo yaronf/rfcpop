@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, include, url
+from rfcpop.feeds import *
 
 urlpatterns = patterns('rfcpop.views',
     # This one is for links from "tools" RFCs
@@ -13,6 +14,9 @@ urlpatterns = patterns('rfcpop.views',
     url(r'^logout/', 'logout'),
     url(r'^about/', 'about'),
     url(r'^release-notes/', 'release_notes'),
+    # RSS Feeds
+    url(r'^feeds/latest/', LatestEntriesFeed()),
+    # Empty URL
     url(r'^$', 'home', name='home'),
 )
 
