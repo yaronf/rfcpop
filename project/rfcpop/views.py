@@ -9,6 +9,7 @@ import re
 import json
 import djason.json
 import logging
+import os
 
 from rfcpop.models import *
 
@@ -44,7 +45,8 @@ def rfc(request, rfc_num):
     # if r.status_code != requests.codes.ok:  # for whatever reason
     #     raise Http404()
     # response_lines = add_hook(r.iter_lines(), request, url)
-    filename = 'rfcpop/static/html-rfcs/rfc' + str(rfc_num) + '.html'
+    appdir = os.path.dirname(os.path.realpath(__file__))
+    filename = os.path.join(appdir, 'static/html-rfcs/rfc' + str(rfc_num) + '.html')
     infile = open(filename)
     response_lines = add_hook(infile, request, url)
     response = HttpResponse(response_lines)
