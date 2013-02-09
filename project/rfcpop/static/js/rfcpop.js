@@ -340,6 +340,7 @@ function editButtonClicked(event) {
 	$(".annot-save-button").attr('target', annot_url);
 	$(".annot-cancel-button").click(editCancelButtonClicked);
 	$(".annot-cancel-button").attr('target', annot_url);
+	$(".annot-cancel-button").attr('initial_text', initial_text);
 }
 
 function editSaveButtonClicked(event) {
@@ -381,7 +382,6 @@ function editSaveButtonClicked(event) {
 function editCancelButtonClicked(event) {
 	var button = $(event.target);
 	var area = button.parent().find(".annot-edit");
-	var annotText = area.wysiwyg("getContent");
 	area.wysiwyg('destroy');
 	delete area.wysiwyg;
 	var parent = area.parents('.annot-anchor');
@@ -389,7 +389,8 @@ function editCancelButtonClicked(event) {
 	var edit_block = button.parents('.annot-edit-block');
 	edit_block.remove();
 	var annot_url = button.attr('target');
-	renderAnnot(docAnchor, annotText, window.rfcpop.author_id, annot_url);
+	var initial_text = button.attr('initial_text');
+	renderAnnot(docAnchor, initial_text, window.rfcpop.author_id, annot_url);
 }
 
 function custom_alert(output_msg, title_msg) {
