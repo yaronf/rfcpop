@@ -142,6 +142,7 @@ function createClicked(event) {
 	parent.append(edit_block);
 	var area = parent.find(".annot-edit");
 	area.wysiwyg(wysiwygOptions(''));
+	area.wysiwyg('focus');
 	$(".annot-save-button").click(saveClicked);
 	$(".annot-cancel-button").click(cancelClicked);
 }
@@ -334,6 +335,7 @@ function editButtonClicked(event) {
 	parent.append(edit_block);
 	var area = parent.find(".annot-edit");
 	area.wysiwyg(wysiwygOptions(initial_text));
+	area.wysiwyg('focus');
 	$(".annot-save-button").click(editSaveButtonClicked);
 	$(".annot-save-button").attr('target', annot_url);
 	$(".annot-cancel-button").click(editCancelButtonClicked);
