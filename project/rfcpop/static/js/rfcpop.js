@@ -115,6 +115,17 @@ function wysiwygControls() {
 	return controls;
 }
 
+function wysiwygOptions(initial_text) {
+	options = {	
+		controls : wysiwygControls(),
+		tableFiller : '',
+		initialContent : initial_text,
+		rmUnusedControls : true,
+		brIE: false
+	};
+	return options;
+}
+
 function createClicked(event) {
 	if (!window.rfcpop.is_authenticated) {
 		custom_alert('Please login or register to create a comment');
@@ -130,12 +141,7 @@ function createClicked(event) {
 			"</div>");
 	parent.append(edit_block);
 	var area = parent.find(".annot-edit");
-	area.wysiwyg({
-		controls : wysiwygControls(),
-		tableFiller : '',
-		initialContent : '',
-		rmUnusedControls : true
-	});
+	area.wysiwyg(wysiwygOptions(''));
 	$(".annot-save-button").click(saveClicked);
 	$(".annot-cancel-button").click(cancelClicked);
 }
@@ -327,12 +333,7 @@ function editButtonClicked(event) {
 			"</div");
 	parent.append(edit_block);
 	var area = parent.find(".annot-edit");
-	area.wysiwyg({
-		controls : wysiwygControls(),
-		tableFiller : '',
-		initialContent : initial_text,
-		rmUnusedControls : true
-	});
+	area.wysiwyg(wysiwygOptions(initial_text));
 	$(".annot-save-button").click(editSaveButtonClicked);
 	$(".annot-save-button").attr('target', annot_url);
 	$(".annot-cancel-button").click(editCancelButtonClicked);
