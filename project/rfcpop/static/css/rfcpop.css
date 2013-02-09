@@ -28,6 +28,9 @@
 	text-align: right;
 	font-size: 80%;
 }
+.annot-saved {
+	font-style: italic;
+}
 .rfcpop-static {
         font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
         font-weight: normal;

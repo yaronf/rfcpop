@@ -175,7 +175,7 @@ function saveClicked(event) {
 		success: function(data, testStatus, xhr) {
 			var annot_url = xhr.getResponseHeader('Location');
 			edit_block.remove();
-			renderAnnot(docAnchor, annotText, null, annot_url);
+			renderAnnot(docAnchor, annotText, null, annot_url, '');
 		},
 		error : function(data, textStatus, errorThrown) {
 			custom_alert("Could not save annotation [" + textStatus + '] '
@@ -225,7 +225,7 @@ function getAnnotations() {
 function handleAnnotationList(data) {
 	$(data).each(function () {
 		var annot_url = '/rfcpop/annot/'+this.pk;
-		renderAnnot(this.bookmark, this.text, this.author, annot_url);
+		renderAnnot(this.bookmark, this.text, this.author, annot_url, this.saved);
 	});
 }
 
@@ -233,7 +233,7 @@ function staticAnnotText() {
 	return "<div class='annot-block'>"+
 		"  <div class='annot-header'>"+
 		"    <span class='annot-author'></span>"+
-		"    <span class='annot-created'></span>"+
+		"    <span class='annot-saved'></span>"+
 		"  </div>"+
 		"  <div class='annot-text'></div>"+
 		"  <div class='annot-action-buttons'>"+
@@ -243,7 +243,7 @@ function staticAnnotText() {
 		"</div>";
 }
 
-function renderAnnot(bookmark, text, author, annot_url) {
+function renderAnnot(bookmark, text, author, annot_url, saved_date) {
 	var is_authenticated = window.rfcpop.is_authenticated
 	var my_author_id = window.rfcpop.author_id
 	var my_nickname = window.rfcpop.author_nickname
@@ -260,6 +260,7 @@ function renderAnnot(bookmark, text, author, annot_url) {
 	var newDiv = $(staticAnnotText());
 	newDiv.find('.annot-text').html(text);
 	newDiv.find('.annot-author').html(author_display_name);
+	newDiv.find('.annot-saved').html(saved_date);
 	$(anchor).append(newDiv);
 	var edit_button = newDiv.find('.annot-edit-button');
 	var delete_button = newDiv.find('.annot-delete-button');
@@ -370,7 +371,7 @@ function editSaveButtonClicked(event) {
             	},
 		success: function(data, testStatus, xhr) {
 			edit_block.remove();
-			renderAnnot(docAnchor, annotText, null, editUrl);
+			renderAnnot(docAnchor, annotText, null, editUrl, '');
 		},
 		error : function(data, textStatus, errorThrown) {
 			custom_alert("Could not save annotation [" + textStatus + '] '
@@ -390,7 +391,7 @@ function editCancelButtonClicked(event) {
 	edit_block.remove();
 	var annot_url = button.attr('target');
 	var initial_text = button.attr('initial_text');
-	renderAnnot(docAnchor, initial_text, window.rfcpop.author_id, annot_url);
+	renderAnnot(docAnchor, initial_text, window.rfcpop.author_id, annot_url, '');
 }
 
 function custom_alert(output_msg, title_msg) {
