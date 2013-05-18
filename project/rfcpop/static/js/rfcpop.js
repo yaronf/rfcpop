@@ -22,6 +22,12 @@ function setupDocument() {
 
 function wysiwygControls() {
 	var controls = {
+		bold : {
+			visible : true
+		},
+		italic : {
+			visible : true
+		},
 		strikeThrough : {
 			visible : true
 		},
